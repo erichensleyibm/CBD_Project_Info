@@ -1,4 +1,8 @@
 ---
+declared-services:
+  php-mysql-db:
+    label: Clouding NoSQL DB
+    plan: Lite
 applications:
 - disk_quota: 256M
   name: php-mysql
