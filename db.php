@@ -25,6 +25,7 @@ if(!$_ENV["VCAP_SERVICES"]){ //local dev
     $mysql_database = "test";
 } else { //running in Bluemix
     $vcap_services = json_decode($_ENV["VCAP_SERVICES" ]);
+    echo $vcap_services
     if($vcap_services->{'mysql-5.5'}){ //if "mysql" db service is bound to this application
         $db = $vcap_services->{'mysql-5.5'}[0]->credentials;
     } 
