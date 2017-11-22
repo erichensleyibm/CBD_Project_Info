@@ -18,13 +18,15 @@
          <form id="form1" onsubmit="return validateForm()">
           First name:<br>
           <input type="text" name="f_name" value="first name"><br>
+          <p id="form1_fname"></p>
           Last name:<br>
           <input type="text" name="l_name" value="last name"><br>
+          <p id="form1_lname"></p>
         </form> 
             
         <button type="submit" form="form1" value="Submit">Submit</button> 
         
-        <p id="demo"></p>
+        
      
         <p id="response" class="lead text-center"></p>
 
@@ -39,9 +41,9 @@
     <script>
     // Validate Form
     function validateForm() {
-    var x, text;
-    var x = document.forms["form1"]["f_name"].value;
-    if (x == "" || x == " ") {
+    var x1, x2, text1, text2;
+    var x1 = document.forms["form1"]["f_name"].value;
+    if (x1 == "" || x1 == " ") {
         alert("Name must be filled out");
         text = "Input not valid";
         return false;
@@ -49,44 +51,19 @@
         return true
         text = "Input OK";
     }
-    document.getElementById("demo").innerHTML = text;
+    var x2 = document.forms["form1"]["l_name"].value;
+    if (x2 == "" || x2 == " ") {
+        alert("Name must be filled out");
+        text = "Input not valid";
+        return false;
+        } else {
+        return true
+        text = "Input OK";
     }
-
-;
+    document.getElementById("form1_fname").innerHTML = text1;
+    document.getElementById("form1_lname").innerHTML = text2;
+    };
     
-    	//Submit data when enter key is pressed
-    	function postdata() {
-    	if validateForm() == true {
-        	var fname = document.forms["form1"]["f_name"].value
-            $.ajax({
-        		method: "POST",
-        		url: "./api/visitors",
-        		contentType: "application/json",
-        		data: JSON.stringify({name: f_name })
-        		})
-            .done(function(data) {
-                $('#response').html(AntiXSS.sanitizeInput(data));
-                $('#nameInput').hide();
-                getNames();
-            });
-        	}
-        }
-        
-        //Retreive all the visitors from the database
-        function getNames(){
-          $.get("./api/visitors")
-              .done(function(data) {
-                  if(data.length > 0) {
-                    data.forEach(function(element, index) {
-                      data[index] = AntiXSS.sanitizeInput(element)
-                    });
-                    $('#databaseNames').html("Database contents: " + JSON.stringify(data));
-                  }
-              });
-          }
-
-          //Call getNames on page load.
-          getNames();
 
     </script>
 </body>
