@@ -16,8 +16,6 @@
 */
 ->
 
-<?php include 'nosql.php';?>
-<?php
 ?>
 
 
@@ -39,45 +37,13 @@
 					Welcome to the <span class="blue">PHP MySQL Sample</span> on Bluemix!
 				</h1>
         <p class="description">This introductory sample allows you to insert messages into a MySQL database. <br>
-
-
-            <input type="button" class = "mybutton" onclick="window.location = 'init.php';" class="btn" value="(Re-)Create table"></input></p>
+            </p>
             </br>
 
     
     <table id='notes' class='records'><tbody>
         
         <?php        
-        try {
-          // Let's login to the database. 
-          $sag = new Sag($myUsername . ".cloudant.com");
-          $sag->login($myUsername, $myPassword);
-          // Now that we are logged in, we can create a database to use
-          $sag->createDatabase("mydatabase");
-          $sag->setDatabase("mydatabase");
-          if(!$sag->put("myId", '{"myKey":"Hello World from Cloudant!"}')->body->ok) {
-            error_log('Unable to post a document to Cloudant.');
-          } else {
-        	  // We are now going to read a document from our cloudant database. We are going
-        	  // to retrieve the value associated with myKey from the body of the document. 
-          	  //The SAG PHP library takes care of all the gory details and only retrieves the value.
-        	  $resp = $sag->get('myId')->body->myKey;
-        	  echo $resp;  
-            }
-                 
-          // Assuming everything above was executed without error, we now are connected to the 
-          // database and have retrieved the value.
-          
-          //NOTE: Since we have a connection to the database, we can query the database for other
-          //      documents and retrieve other variables at a later time. We do not need to connect 
-          //      to the database again. 
-        }
-          catch(Exception $e) {
-          //We sent something to Sag that it didn't expect.
-          echo '<p>There Was an Error Getting Data from Cloudant!!!</p>';
-          echo $e->getMessage();
-        }
-
         ?>
         <tr>
             <form
