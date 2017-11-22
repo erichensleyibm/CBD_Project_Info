@@ -62,24 +62,6 @@
 
     };
     
-    //Submit data when enter key is pressed
-    	function postdata() {
-        	lastname = document.forms["form1"]["l_name"].value
-        	firstname = document.forms["form1"]["f_name"].value
-            document.getElementById("test").innerHTML = "yes";
-            document.getElementById("test2").innerHTML = firstname;
-            document.getElementById("test3").innerHTML = lastname;            
-            $.ajax({
-        		method: "POST",
-        		url: "./api/visitors",
-        		contentType: "application/json",
-        		data: JSON.stringify({first_name: firstname })
-        		})
-            .done(function(data) {
-                $('#response').html(AntiXSS.sanitizeInput(data));
-                $('#nameInput').hide();
-            });
-    };
     
     </script>
 </body>
