@@ -16,8 +16,7 @@
 */
 ->
 
-<?php include 'db.php';
-    require('vendor/autoload.php');?>
+<?php include 'nosql.php';?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //if new message is being added
     $cleaned_message = preg_replace('/[^a-zA-Z0-9.\s]/', '', $_POST["message"]); //remove invalid chars from input.
@@ -37,11 +36,6 @@ if ($result = $mysqli->query($strsql)) {
         //Could be many reasons, but most likely the table isn't created yet. init.php will create the table.
         echo "<b>Can't query the database, did you <a href = init.php>Create the table</a> yet?</b>";
     }
-    
-$nosql_json = json_decode(getenv('VCAP_SERVICES'),true);
-$VcapSvs = $nosql_json["cloudantNoSQLDB"][0]["credentials"];
-$nosqlUsername = $VcapSvs["username"];
-$nosqlPassword = $VcapSvs["password"];
 ?>
 
 
@@ -71,34 +65,11 @@ $nosqlPassword = $VcapSvs["password"];
     
     <table id='notes' class='records'><tbody>
         
-        <?php
-            echo "<tr>\n";
-            while ($property = mysqli_fetch_field($result)) {
-                    echo '<th>' .  $property->name . "</th>\n"; //the headings
-
-            }
-            echo "</tr>\n";
-
-            mysqli_data_seek ( $result, 0 );
-            if($result->num_rows == 0){ //nothing in the table
-                        echo '<td>Empty!</td>';
-            }
-                
-            while ( $row = mysqli_fetch_row ( $result ) ) {
-                echo "<tr>\n";
-                for($i = 0; $i < mysqli_num_fields ( $result ); $i ++) {
-                    echo '<td>' . "$row[$i]" . '</td>';
-                }
-                echo "</tr>\n";
-            }
-
-            $result->close();
-            mysqli_close();
-        
+        <?php        
         try {
           // Let's login to the database. 
-          $sag = new Sag($nosqlUsername . ".cloudant.com");
-          $sag->login($nosqlUsername, $nosqlPassword);
+          $sag = new Sag($myUsername . ".cloudant.com");
+          $sag->login($myUsername, $myPassword);
           // Now that we are logged in, we can create a database to use
           $sag->createDatabase("mydatabase");
           $sag->setDatabase("mydatabase");
