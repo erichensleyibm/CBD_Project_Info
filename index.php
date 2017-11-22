@@ -16,8 +16,6 @@
 */
 ->
 
-?>
-
 
 <!DOCTYPE html>
 <html>
@@ -43,8 +41,6 @@
     
     <table id='notes' class='records'><tbody>
         
-        <?php        
-        ?>
         <tr>
             <form
                 <td>
