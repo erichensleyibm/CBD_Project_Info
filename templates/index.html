@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <h1>Welcome.</h1>
-         <form id="form1" onsubmit="return validateForm()">
+         <form id="form1" onsubmit="validateForm()">
           First name:<br>
           <input type="text" name="f_name" value="first name"><br>
           <p id="form1_fname"></p>
@@ -50,7 +50,7 @@
         } else {
         return true
         text = "Input OK";
-    }
+    };
     var x2 = document.forms["form1"]["l_name"].value;
     if (x2 == "" || x2 == " ") {
         alert("Name must be filled out");
@@ -59,11 +59,11 @@
         } else {
         return true
         text = "Input OK";
-    }
+    };
     document.getElementById("form1_fname").innerHTML = text1;
     document.getElementById("form1_lname").innerHTML = text2;
     };
-    
+
 
     </script>
 </body>
