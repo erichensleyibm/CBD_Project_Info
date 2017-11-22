@@ -28,10 +28,6 @@ if(!$_ENV["VCAP_SERVICES"]){ //local dev
     if($vcap_services->{'mysql-5.5'}){ //if "mysql" db service is bound to this application
         $db = $vcap_services->{'mysql-5.5'}[0]->credentials;
     }
-    elif($vcap_services -> {'cloudantNoSQLDB'}){
-        $db = $vcap_services -> {'cloudantNoSQLDB'}[0] -> credentials;
-        echo 'cloudant';
-    } 
     else if($vcap_services->{'cleardb'}){ //if cleardb mysql db service is bound to this application
         $db = $vcap_services->{'cleardb'}[0]->credentials;
     } 
