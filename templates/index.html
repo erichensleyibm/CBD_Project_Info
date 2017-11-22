@@ -59,28 +59,40 @@
     };
     if (x1 == "pass"){
         if (x2 == "pass"){
-            postdata()}
+            postdata(x1, x2)}
         }
     }
     
     //Submit data when enter key is pressed
-    	function postdata() {
-    	if validateForm() == true {
-        	var fname = document.forms["form1"]["f_name"].value
+    	function postdata(firstname, lastname) {
             $.ajax({
         		method: "POST",
         		url: "./api/visitors",
         		contentType: "application/json",
-        		data: JSON.stringify({name: f_name })
+        		data: JSON.stringify({first_name: firstname })
         		})
             .done(function(data) {
                 $('#response').html(AntiXSS.sanitizeInput(data));
                 $('#nameInput').hide();
                 getNames();
             });
-        	}
-        }
+    };
+    
+    //Retreive all the visitors from the database
+        function getNames(){
+          $.get("./api/visitors")
+              .done(function(data) {
+                  if(data.length > 0) {
+                    data.forEach(function(element, index) {
+                      data[index] = AntiXSS.sanitizeInput(element)
+                    });
+                    $('#databaseNames').html("Database contents: " + JSON.stringify(data));
+                  }
+              });
+          }
 
+          //Call getNames on page load.
+          getNames();
     </script>
 </body>
 
