@@ -44,7 +44,7 @@
     <script>
     // Validate Form
     function validateForm() {
-    var x2, x1;
+    var x2, x1, text1, text2;
     x2 = document.forms["form1"]["l_name"].value;
     if (x2 == "" || x2 == " " || x2 == "last name") {
         alert("Last name must be filled out");
@@ -59,8 +59,10 @@
         } else {
         text1 = "pass";   
     };
+    document.getElementById("test").innerHTML = text1;
+    document.getElementById("test1").innerHTML = text2;
 
-    };
+    }
     
     
     </script>
