@@ -34,25 +34,22 @@
     <script>
     // Validate Form
     function validateForm() {
-    var x2, x1, text1, text2;
+    var x2, text2;
     x2 = document.forms["form1"]["l_name"].value;
     if (x2 == "" || x2 == " " || x2 == "last name") {
         alert("Last name must be filled out");
-        text2 = "stop"
         } else {
-        text2 = "pass";
+        function validateForm1();
         }  
-     
+    };
+    
+    function validateForm1() {
+    var x1, text1;
     x1 = document.forms["form1"]["f_name"].value;
     if (x1 == "" || x1 == " " || x1 == "first name") {
         alert("First name must be filled out");
-        text1 = "stop"
         } else {
-        text1 = "pass";   
-        }
-    if (x1 == "pass"){
-        if (x2 == "pass"){
-        alert(text2)}
+        alert(text1);   
         }
     };
     
