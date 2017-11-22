@@ -41,8 +41,8 @@
     <script>
     // Validate Form
     function validateForm() {
-
-    var x2 = document.forms["form1"]["l_name"].value;
+    var x2, text;
+    x2 = document.forms["form1"]["l_name"].value;
     if (x2 == "" || x2 == " ") {
         alert("Last name must be filled out");
         text2 = "Input not valid";
