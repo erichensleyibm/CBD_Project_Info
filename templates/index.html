@@ -24,7 +24,9 @@
             
         <button type="submit" form="form1" value="Submit">Submit</button> 
         
-        
+        <p id="test"></p>
+        <p id="test2"></p>
+        <p id="test3"></p>
         
   
      
@@ -61,10 +63,13 @@
         if (x2 == "pass"){
             postdata(x1, x2)}
         }
-    }
+    };
     
     //Submit data when enter key is pressed
     	function postdata(firstname, lastname) {
+            document.getElementById("test").innerHTML = "yes";
+            document.getElementById("test2").innerHTML = firstname;
+            document.getElementById("test3").innerHTML = lastname;            
             $.ajax({
         		method: "POST",
         		url: "./api/visitors",
@@ -74,25 +79,9 @@
             .done(function(data) {
                 $('#response').html(AntiXSS.sanitizeInput(data));
                 $('#nameInput').hide();
-                getNames();
             });
     };
     
-    //Retreive all the visitors from the database
-        function getNames(){
-          $.get("./api/visitors")
-              .done(function(data) {
-                  if(data.length > 0) {
-                    data.forEach(function(element, index) {
-                      data[index] = AntiXSS.sanitizeInput(element)
-                    });
-                    $('#databaseNames').html("Database contents: " + JSON.stringify(data));
-                  }
-              });
-          }
-
-          //Call getNames on page load.
-          getNames();
     </script>
 </body>
 
