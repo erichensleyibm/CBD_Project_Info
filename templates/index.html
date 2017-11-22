@@ -18,10 +18,8 @@
          <form id="form1" onsubmit="validateForm()">
           First name:<br>
           <input type="text" name="f_name" value="first name"><br>
-          <p id="demo1"></p>
           Last name:<br>
           <input type="text" name="l_name" value="last name"><br>
-          <p id="demo2"></p>
         </form> 
             
         <button type="submit" form="form1" value="Submit">Submit</button> 
@@ -48,20 +46,40 @@
     x2 = document.forms["form1"]["l_name"].value;
     if (x2 == "" || x2 == " " || x2 == "last name") {
         alert("Last name must be filled out");
-        text2 = "Input not valid";
+        text2 = "stop"
         } else {
-        text2 = "Input OK";
+        text2 = "pass";
     };    
     x1 = document.forms["form1"]["f_name"].value;
     if (x1 == "" || x1 == " " || x1 = "first name") {
         alert("First name must be filled out");
-        text1 = "Input not valid";
+        text1 = "stop"
         } else {
-        text1 = "Input OK";   
+        text1 = "pass";   
+    };
+    if (x1 == "pass"){
+        if (x2 == "pass"){
+            postdata()}
+        }
     }
-    document.getElementById("demo1").innerHTML = text1;
-    document.getElementById("demo2").innerHTML = text2;
-    }
+    
+    //Submit data when enter key is pressed
+    	function postdata() {
+    	if validateForm() == true {
+        	var fname = document.forms["form1"]["f_name"].value
+            $.ajax({
+        		method: "POST",
+        		url: "./api/visitors",
+        		contentType: "application/json",
+        		data: JSON.stringify({name: f_name })
+        		})
+            .done(function(data) {
+                $('#response').html(AntiXSS.sanitizeInput(data));
+                $('#nameInput').hide();
+                getNames();
+            });
+        	}
+        }
 
     </script>
 </body>
