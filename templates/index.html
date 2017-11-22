@@ -23,14 +23,7 @@
         </form> 
             
         <button type="submit" form="form1" value="Submit">Submit</button> 
-        
-        <p id="test"></p>
-        <p id="test2"></p>
-        <p id="test3"></p>
-        
-  
-     
-     
+             
         <p id="response" class="lead text-center"></p>
 
         <p id="databaseNames" class="lead text-center"></p>
@@ -51,17 +44,14 @@
         text2 = "stop"
         } else {
         text2 = "pass";
-    }   
+        }   
     x1 = document.forms["form1"]["f_name"].value;
-    if (x1 == "" || x1 == " " || x1 = "first name") {
+    if (x1 == "" || x1 == " " || x1 == "first name") {
         alert("First name must be filled out");
         text1 = "stop"
         } else {
         text1 = "pass";   
-    }
-    document.getElementById("test").innerHTML = text1;
-    document.getElementById("test1").innerHTML = text2;
-
+        }
     }
     
     
