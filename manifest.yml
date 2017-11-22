@@ -1,5 +1,5 @@
 ---
 applications:
- - name: GetStartedPHP
+ - name: GetStartedPython
    random-route: true
    memory: 128M
