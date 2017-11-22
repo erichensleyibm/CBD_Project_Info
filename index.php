@@ -18,24 +18,6 @@
 
 <?php include 'nosql.php';?>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") { //if new message is being added
-    $cleaned_message = preg_replace('/[^a-zA-Z0-9.\s]/', '', $_POST["message"]); //remove invalid chars from input.
-    $strsq0 = "INSERT INTO MESSAGES_TABLE ( MESSAGE) VALUES ('" . $cleaned_message . "');"; //query to insert new message
-    if ($mysqli->query($strsq0)) {
-        //echo "Insert success!";
-    } else {
-        echo "Cannot insert into the data table; check whether the table is created, or the database is active. "  . mysqli_error();
-    }
-}
-
-//Query the DB for messages
-$strsql = "select * from MESSAGES_TABLE ORDER BY ID DESC limit 100";
-if ($result = $mysqli->query($strsql)) {
-   // printf("<br>Select returned %d rows.\n", $result->num_rows);
-} else {
-        //Could be many reasons, but most likely the table isn't created yet. init.php will create the table.
-        echo "<b>Can't query the database, did you <a href = init.php>Create the table</a> yet?</b>";
-    }
 ?>
 
 
