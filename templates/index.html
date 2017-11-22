@@ -41,16 +41,16 @@
     function validateForm() {
     var x1,text1;
     var x1 = document.forms["form1"]["f_name"].value;
-    if (x1 == "" || x1 == " ") {
+    if (isNaN(x) || x1 == "" || x1 == " ") {
         alert("Name must be filled out");
         text1 = "Input not valid";
         return false;
         } else {
         return true
         text1 = "Input OK";
-    };    
+    }    
     document.getElementById("form1_fname").innerHTML = text1;
-    };
+    }
 
 
     </script>
