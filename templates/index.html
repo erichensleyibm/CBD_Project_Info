@@ -18,14 +18,16 @@
          <form id="form1" onsubmit="validateForm()">
           First name:<br>
           <input type="text" name="f_name" value="first name"><br>
+          <p id="demo1"></p>
           Last name:<br>
           <input type="text" name="l_name" value="last name"><br>
+          <p id="demo2"></p>
         </form> 
             
         <button type="submit" form="form1" value="Submit">Submit</button> 
         
-        <p id="demo1"></p>
-        <p id="demo2"></p>
+        
+        
   
      
      
@@ -44,15 +46,15 @@
     function validateForm() {
     var x2, x1;
     x2 = document.forms["form1"]["l_name"].value;
-    if (x2 == "" || x2 == " ") {
+    if (x2 == "" || x2 == " " || x2 == "last name") {
         alert("Last name must be filled out");
         text2 = "Input not valid";
         } else {
         text2 = "Input OK";
     };    
     x1 = document.forms["form1"]["f_name"].value;
-    if (x1 == "" || x1 == " ") {
-        alert("Last name must be filled out");
+    if (x1 == "" || x1 == " " || x1 = "first name") {
+        alert("First name must be filled out");
         text1 = "Input not valid";
         } else {
         text1 = "Input OK";   
